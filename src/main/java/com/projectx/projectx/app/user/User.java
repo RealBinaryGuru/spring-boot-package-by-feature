@@ -1,5 +1,6 @@
 package com.projectx.projectx.app.user;
 
+import com.projectx.projectx.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +11,7 @@ import lombok.*;
 @Data
 @Setter
 @Getter
-public class User {
+public class User extends BaseEntity {
     @Column(nullable = false, length = 50)
     private String username;
 

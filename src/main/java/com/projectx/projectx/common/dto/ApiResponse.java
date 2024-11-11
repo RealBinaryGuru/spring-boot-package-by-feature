@@ -1,7 +1,5 @@
 package com.projectx.projectx.common.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 @Data

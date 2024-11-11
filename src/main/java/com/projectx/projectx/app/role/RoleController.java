@@ -17,23 +17,29 @@ public class RoleController {
     @GetMapping
     public PaginationApiResponse<RoleResponse> getAllRoles(Pageable pageable) {
         Page<RoleResponse> rolesPage = roleService.getAllRoles(pageable);
-        return new PaginationApiResponse<>(rolesPage, null);
+        return new PaginationApiResponse<RoleResponse>(rolesPage, null);
     }
 
     @GetMapping("/{id}")
     public ApiResponse<RoleResponse> getRoleById(@PathVariable Long id) {
-        return new ApiResponse<>(roleService.getRoleById(id), null);
+        return new ApiResponse<RoleResponse>(roleService.getRoleById(id), null);
     }
 
     @DeleteMapping("/{id}")
-    public ApiResponse<String> deleteRole(Long id) {
+    public ApiResponse<String> deleteRole(@PathVariable Long id) {
         roleService.deleteRole(id);
         return new ApiResponse<>(null, "Role deleted successfully");
     }
 
     @PostMapping
-    public ApiResponse<RoleDto> createRole(@Valid @RequestBody RoleDto roleDto) {
-        RoleDto createdRole = roleService.createRole(roleDto);
-        return new ApiResponse<>(createdRole, null);
+    public ApiResponse<RoleResponse> createRole(@Valid @RequestBody RoleDto roleDto) {
+        RoleResponse createdRole = roleService.createRole(roleDto);
+        return new ApiResponse<RoleResponse>(createdRole, null);
+    }
+
+    @PutMapping("/{id}")
+    public ApiResponse<RoleResponse> updateRole(@PathVariable Long id,@Valid @RequestBody RoleDto roleDto){
+        RoleResponse updateRole = roleService.updateRole(id,roleDto);
+        return  new ApiResponse<RoleResponse>(updateRole,null);
     }
 }

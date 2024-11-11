@@ -21,11 +21,21 @@ public class RoleService {
     }
 
 
-    public RoleDto createRole(RoleDto roleDto) {
-        return RoleMapper.toDto(roleRepository.save(RoleMapper.toEntity(roleDto)));
+    public RoleResponse createRole(RoleDto roleDto) {
+        return RoleMapper.toRoleResponse(roleRepository.save(RoleMapper.toEntity(roleDto)));
     }
 
     public void deleteRole(Long id) {
         roleRepository.deleteById(id);
+    }
+
+    public RoleResponse updateRole(Long id, RoleDto roleDto) {
+        Role existingRole = roleRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("ROLE_NOT_FOUND"));
+
+        existingRole.setCode(roleDto.getCode());
+        existingRole.setName(roleDto.getName());
+
+        Role updateRole = roleRepository.save(existingRole);
+        return RoleMapper.toRoleResponse(updateRole);
     }
 }

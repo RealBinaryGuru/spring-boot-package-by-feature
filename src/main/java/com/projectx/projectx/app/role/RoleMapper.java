@@ -17,4 +17,13 @@ public class RoleMapper {
 
         return role;
     }
+
+    public static RoleResponse toRoleResponse(Role role){
+        RoleResponse roleResponse = new RoleResponse();
+        roleResponse.setId(role.getId());
+        roleResponse.setCode(role.getCode());
+        roleResponse.setName(role.getName());
+
+        return roleResponse;
+    }
 }

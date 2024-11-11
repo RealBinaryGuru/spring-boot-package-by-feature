@@ -1,11 +1,12 @@
 package com.projectx.projectx.app.role;
 
 import com.projectx.projectx.common.dto.ApiResponse;
+import com.projectx.projectx.common.dto.PaginationApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/roles")
@@ -14,12 +15,13 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping
-    public ApiResponse<List<Role>> getAllRoles() {
-        return new ApiResponse<>(roleService.getAllRoles(),null);
+    public PaginationApiResponse<RoleResponse> getAllRoles(Pageable pageable) {
+        Page<RoleResponse> rolesPage = roleService.getAllRoles(pageable);
+        return new PaginationApiResponse<>(rolesPage, null);
     }
 
     @GetMapping("/{id}")
-    public ApiResponse<Role> getRoleById(@PathVariable Long id) {
+    public ApiResponse<RoleResponse> getRoleById(@PathVariable Long id) {
         return new ApiResponse<>(roleService.getRoleById(id), null);
     }
 

@@ -13,3 +13,4 @@ public class ApiResponse<T> {
         this.message = (message == null || message.isEmpty()) ? "Operate successful" : message;
     }
 }
+

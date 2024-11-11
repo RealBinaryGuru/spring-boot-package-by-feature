@@ -21,8 +21,11 @@ public class RoleService {
     }
 
 
-    public Role createRole(Role role) {
-        return roleRepository.save(role);
+    public RoleDto createRole(RoleDto roleDto) {
+        Role role = RoleMapper.toEntity(roleDto);
+        Role saveRole = roleRepository.save(role);
+
+        return RoleMapper.toDto(saveRole);
     }
 
     public void deleteRole(Long id) {

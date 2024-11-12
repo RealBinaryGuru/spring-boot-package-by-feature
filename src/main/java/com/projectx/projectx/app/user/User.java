@@ -1,6 +1,7 @@
 package com.projectx.projectx.app.user;
 
 import com.projectx.projectx.common.entity.BaseEntity;
+import com.projectx.projectx.enumeric.GenderType;
 import jakarta.persistence.*;
 
 @Entity
@@ -80,8 +81,4 @@ public class User extends BaseEntity {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-}
-
-enum GenderType {
-    MALE, FEMALE
 }

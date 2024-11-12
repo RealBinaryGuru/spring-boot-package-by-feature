@@ -1,5 +1,6 @@
 package com.projectx.projectx.app.auth.dto;
 
+import com.projectx.projectx.enumeric.GenderType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -18,6 +19,8 @@ public class RegisterDto {
 
     @Size(min = 6)
     private String password;
+
+    private GenderType gender;
 
     public String getUsername() {
         return username;
@@ -57,5 +60,13 @@ public class RegisterDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public GenderType getGender() {
+        return gender;
+    }
+
+    public void setGender(GenderType genderType) {
+        this.gender = genderType;
     }
 }
